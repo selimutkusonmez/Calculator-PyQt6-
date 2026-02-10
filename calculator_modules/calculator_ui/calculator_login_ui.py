@@ -5,7 +5,9 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtGui import QIcon,QPixmap,QIntValidator,QDoubleValidator,QRegularExpressionValidator,QKeyEvent,QPainter
 import subprocess
 import webbrowser
+
 from calculator_modules.calculator_styles.style_reader import read_style
+from calculator_modules.calculator_functions.calculator_login_functions import *
 
 class LoginUI(QWidget):
 
@@ -44,6 +46,7 @@ class LoginUI(QWidget):
         self.login_ui_groupbox_layout.addWidget(self.error_space,2,0,1,2)
 
         self.login_button = QPushButton("Login")
+        self.login_button.clicked.connect(self.login_button_func)
         self.login_ui_groupbox_layout.addWidget(self.login_button,3,0,1,2)
 
         self.my_linkedin_button = QPushButton("My Linkedin")
@@ -61,9 +64,8 @@ class LoginUI(QWidget):
         self.setStyleSheet(read_style("login_ui.qss"))
 
     def login_button_func(self):
-        return
-
-
+        self.error_space.setText(login(self.username_input.text(),self.password_input.text()))
+        
 
     def restart_app_button_func(self):
         QApplication.quit()
