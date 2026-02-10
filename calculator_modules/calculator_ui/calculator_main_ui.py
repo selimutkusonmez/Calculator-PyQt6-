@@ -2,10 +2,10 @@ import sys
 from PyQt6.QtCore import Qt,QRegularExpression,QSize,pyqtSignal
 from PyQt6.QtWidgets import (
      QApplication,QWidget,QMainWindow,QLineEdit,QPushButton,QTextEdit,QLabel,QGridLayout,QFrame,QTableWidget,QTableWidgetItem,QGroupBox,QComboBox,QMessageBox,QFileDialog,QListWidget,QTabWidget,QVBoxLayout,QSizePolicy)
-from PyQt6.QtGui import QIcon,QPixmap,QIntValidator,QDoubleValidator,QRegularExpressionValidator,QKeyEvent,QPainter
+from PyQt6.QtGui import QIcon,QPixmap,QIntValidator,QDoubleValidator,QRegularExpressionValidator,QKeyEvent,QPainter,QKeyEvent
 import subprocess
 
-
+from My_Calculator.calculator_modules.calculator_functions.calculator_button_functions.key_press_func import key_press_event_function
 from calculator_modules.calculator_styles.style_reader import read_style
 from config import JPG_PATH
 
@@ -171,10 +171,10 @@ class MainUI(QWidget):
         self.lower_groupbox_layout.addWidget(self.multiply_button,4,3)
         
 
-        self.zeron_button = QPushButton("0")
-        self.zeron_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-        self.zeron_button.clicked.connect(self.buttons_func)
-        self.lower_groupbox_layout.addWidget(self.zeron_button,5,1)
+        self.zero_button = QPushButton("0")
+        self.zero_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        self.zero_button.clicked.connect(self.buttons_func)
+        self.lower_groupbox_layout.addWidget(self.zero_button,5,1)
         
 
         self.float_button = QPushButton(",")
@@ -199,10 +199,16 @@ class MainUI(QWidget):
         
     def buttons_func(self):
         button = self.sender()
+        print(button.text())
 
-
-
-
+    def keyPressEvent(self, event : QKeyEvent):
+        try:
+            key = event.key()
+            text = event.text()
+            click = key_press_event_function(key,text,self)
+            click.animateClick()
+            super().keyPressEvent(event)
+        except : return
 
     def restart_button_func(self):
         QApplication.quit()
