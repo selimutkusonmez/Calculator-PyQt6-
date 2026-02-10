@@ -6,7 +6,6 @@ from PyQt6.QtGui import QIcon,QPixmap,QIntValidator,QDoubleValidator,QRegularExp
 
 from calculator_modules.calculator_ui.calculator_login_ui import LoginUI
 
-print("sa")
 
 class AppManager:
     def __init__(self):
@@ -14,8 +13,7 @@ class AppManager:
         self.login_ui = LoginUI()
     
     def init_login_ui(self):
-        print("sa")
-        self.login_ui.showMaximized()
+        self.login_ui.show()
         sys.exit(self.app.exec())
     
     def handle_login_result(self):

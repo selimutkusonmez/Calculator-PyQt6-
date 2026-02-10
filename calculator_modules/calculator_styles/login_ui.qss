@@ -1,0 +1,20 @@
+QWidget{
+    background-color : lightblue;
+}
+
+QPushButton{
+    background-color : white;
+}
+
+QLabel{
+    background-color : lightblue;
+}
+
+QLineEdit{
+    background-color : white;
+}
+
+#error_space{
+    background-color : lightblue;
+    border : none;
+}
