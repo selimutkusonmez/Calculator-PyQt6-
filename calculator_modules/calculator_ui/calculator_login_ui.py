@@ -1,5 +1,5 @@
 import sys
-from PyQt6.QtCore import Qt,QRegularExpression,QSize
+from PyQt6.QtCore import Qt,QRegularExpression,QSize,pyqtSignal
 from PyQt6.QtWidgets import (
      QApplication,QWidget,QMainWindow,QLineEdit,QPushButton,QTextEdit,QLabel,QGridLayout,QFrame,QTableWidget,QTableWidgetItem,QGroupBox,QComboBox,QMessageBox,QFileDialog,QListWidget,QTabWidget,QVBoxLayout)
 from PyQt6.QtGui import QIcon,QPixmap,QIntValidator,QDoubleValidator,QRegularExpressionValidator,QKeyEvent,QPainter
@@ -10,7 +10,7 @@ from calculator_modules.calculator_styles.style_reader import read_style
 from calculator_modules.calculator_functions.calculator_login_functions import *
 
 class LoginUI(QWidget):
-
+    login_code = pyqtSignal(int)
     def __init__(self):
         super().__init__()
         self.init_ui()
@@ -64,7 +64,12 @@ class LoginUI(QWidget):
         self.setStyleSheet(read_style("login_ui.qss"))
 
     def login_button_func(self):
-        self.error_space.setText(login(self.username_input.text(),self.password_input.text()))
+        login_status = login(self.username_input.text(),self.password_input.text())
+        self.login_code.emit(login_status[0])
+        if login_status[0] != 1:
+            self.error_space.setText(login_status[1])
+            self.username_input.setText("")
+            self.password_input.setText("")
         
 
     def restart_app_button_func(self):
