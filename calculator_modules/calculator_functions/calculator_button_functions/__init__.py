@@ -1,0 +1,3 @@
+from calculator_modules.calculator_functions.calculator_button_functions.key_press_func import key_press_event_function
+
+__all__ = ["key_press_event_function"]

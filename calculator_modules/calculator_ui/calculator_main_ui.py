@@ -5,7 +5,7 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtGui import QIcon,QPixmap,QIntValidator,QDoubleValidator,QRegularExpressionValidator,QKeyEvent,QPainter,QKeyEvent
 import subprocess
 
-from My_Calculator.calculator_modules.calculator_functions.calculator_button_functions.key_press_func import key_press_event_function
+from calculator_modules.calculator_functions.calculator_button_functions.key_press_func import key_press_event_function
 from calculator_modules.calculator_styles.style_reader import read_style
 from config import JPG_PATH
 
@@ -199,7 +199,16 @@ class MainUI(QWidget):
         
     def buttons_func(self):
         button = self.sender()
-        print(button.text())
+        lower_screen_current_text = self.lower_screen.text()
+        upper_screen_current_text = self.upper_screen.text()
+        if button.text() in ["0","1","2","3","4","5","6","7","8","9"]:
+            self.lower_screen.setText(lower_screen_current_text + button.text())
+
+        else :
+            if upper_screen_current_text == "":
+                self.upper_screen.setText(lower_screen_current_text + " " + button.text())
+                self.lower_screen.setText("")
+
 
     def keyPressEvent(self, event : QKeyEvent):
         try:
