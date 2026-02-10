@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import (
      QApplication,QWidget,QMainWindow,QLineEdit,QPushButton,QTextEdit,QLabel,QGridLayout,QFrame,QTableWidget,QTableWidgetItem,QGroupBox,QComboBox,QMessageBox,QFileDialog,QListWidget,QTabWidget,QVBoxLayout)
 from PyQt6.QtGui import QIcon,QPixmap,QIntValidator,QDoubleValidator,QRegularExpressionValidator,QKeyEvent,QPainter
 
-from calculator_modules.calculator_ui.calculator_login_ui import LoginUI
+from calculator_modules.calculator_ui import *
 
 
 class AppManager:
@@ -19,8 +19,10 @@ class AppManager:
     
     def handle_login_result(self,login_code):
         if login_code == 1:
-            print(login_code)
-            #self.login_ui.close()
+            self.login_ui.close()
+            self.main_ui = MainUI()
+            self.main_ui.show()
+
         else:
             print(login_code)
             return

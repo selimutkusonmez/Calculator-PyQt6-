@@ -1,0 +1,24 @@
+QWidget{
+    background-color : lightblue;
+}
+
+QGroupBox#upper_groupbox QLineEdit{
+    background-color : #93dcf5;
+    border : none;
+}
+
+QGroupBox#lower_groupbox QPushButton{
+    background-color: #f0f0f0;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px; 
+    padding: 5px; 
+    font-size : 15px
+}
+
+QGroupBox#lower_groupbox QPushButton:hover{
+    background-color : #93dcf5
+}
+
+QGroupBox{
+    border : none;
+}

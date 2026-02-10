@@ -8,6 +8,7 @@ import webbrowser
 
 from calculator_modules.calculator_styles.style_reader import read_style
 from calculator_modules.calculator_functions.calculator_login_functions import *
+from config import JPG_PATH
 
 class LoginUI(QWidget):
     login_code = pyqtSignal(int)
@@ -16,6 +17,8 @@ class LoginUI(QWidget):
         self.init_ui()
 
     def init_ui(self):
+
+        self.setWindowIcon(QIcon(JPG_PATH))
         
         self.setFixedSize(300,400)
 
