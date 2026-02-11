@@ -1,20 +1,75 @@
+/* main layout */
+
 QWidget{
-    background-color : lightblue;
+    background-color : #2B2B2B;
+    font-family: "OCR A Extended", monospace;
 }
 
-QPushButton{
-    background-color : white;
+
+/* class label */
+QLabel[class="label"]{
+    color: white;
+    font-size : 15px;
 }
 
-QLabel{
-    background-color : lightblue;
+
+/* class input */
+QLineEdit[class="input"]{
+    background-color: #9EA792;
+
+    color: #1a1a1a;
+    font-size : 20px;
+
+    border: 2px solid #6b7362;
+    border-radius: 4px;
+
+    padding: 5px;
 }
 
-QLineEdit{
-    background-color : white;
-}
 
+/* error_space */
 #error_space{
-    background-color : lightblue;
-    border : none;
+    background-color : #2B2B2B;
+
+    color: #1a1a1a;
+    border: none;
+}
+
+
+/* class orange */
+QPushButton[class="orange"]{
+    background-color: #FF9800;
+    color: #1a1a1a; 
+    font-size : 15px;
+}
+
+QPushButton[class="orange"]:hover {
+    background-color: #F57C00;
+}
+
+QPushButton[class="orange"]:pressed {
+    background-color: #cf6903;
+}
+
+
+/* class button*/
+QPushButton[class="button"]{
+    background-color: #E0E0E0;
+    color: #1a1a1a;
+    font-size : 15px;
+    
+}
+
+QPushButton[class="button"]:hover{
+    background-color: #9c9a9a
+}
+
+QPushButton[class="button"]:pressed{
+    background-color: #818080
+}
+
+
+/* groupbox*/
+QGroupBox{
+    border: none;
 }

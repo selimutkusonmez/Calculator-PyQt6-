@@ -1,27 +1,75 @@
+
+/* outer layout */
 QWidget{
-    background-color : lightblue;
+    background-color : #2B2B2B;
 }
 
+
+/* upper_groupbox */
 QGroupBox#upper_groupbox QLineEdit{
-    background-color : #93dcf5;
-    border : none;
+    background-color: #9EA792;
+
+    color: #1a1a1a;
+    font-size : 20px;
+    font-family: "DSEG7 Classic";
+
+    border: 2px solid #6b7362;
+    border-radius: 4px;
+
+    padding: 5px;
 }
 
-QGroupBox#lower_groupbox QPushButton{
-    background-color: #f0f0f0;
-    border: 1px solid #dcdcdc;
-    border-radius: 8px; 
-    padding: 5px; 
-    font-size : 15px
-}
 
-QGroupBox#lower_groupbox QPushButton:hover{
-    background-color : #93dcf5
-}
-
-QGroupBox#lower_groupbox QPushButton:pressed{
-    background-color : #ff73d7f8
-}
+/* groupbox */
 QGroupBox{
     border : none;
+}
+
+
+/* class number */
+QPushButton[class="number"]{
+    background-color: #E0E0E0;
+    color: #1a1a1a;
+    font-size : 15px;
+    font-family: "DSEG7 Classic";
+    padding: 5px; 
+}
+
+QPushButton[class="number"]:hover{
+    background-color: #9c9a9a
+}
+
+QPushButton[class="number"]:pressed{
+    background-color: #818080
+}
+
+
+/* class operation */
+QPushButton[class="operation"]{
+    background-color: #676666;
+    color: white;
+
+}
+
+QPushButton[class="operation"]:hover{
+    background-color: #454545;
+}
+
+QPushButton[class="operation"]:pressed{
+    background-color: #2e2e2e;
+}
+
+
+/* class orange */
+QPushButton[class="orange"]{
+    background-color: #FF9800;
+    color: white; 
+}
+
+QPushButton[class="orange"]:hover {
+    background-color: #F57C00;
+}
+
+QPushButton[class="orange"]:pressed {
+    background-color: #cf6903;
 }

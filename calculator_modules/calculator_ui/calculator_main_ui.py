@@ -52,144 +52,168 @@ class MainUI(QWidget):
         self.layout.addWidget(self.lower_groupbox,1,0)
 
         self.c_button = QPushButton("C")
+        self.c_button.setProperty("class", "orange")
         self.c_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.c_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.c_button,0,0)
         
 
         self.square_button = QPushButton("X2")
+        self.square_button.setProperty("class", "operation")
         self.square_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.square_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.square_button,0,1)
         
 
         self.button = QPushButton("")
+        self.button.setProperty("class", "operation")
         self.button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.button,0,2)
         
 
         self.erase_button = QPushButton("ers")
+        self.erase_button.setProperty("class", "orange")
         self.erase_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.erase_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.erase_button,0,3)
         
 
         self.mod_button = QPushButton("%")
+        self.mod_button.setProperty("class", "operation")
         self.mod_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.mod_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.mod_button,1,0)
         
 
         self.one_divided_by_x_button = QPushButton("1/X")
+        self.one_divided_by_x_button.setProperty("class", "operation")
         self.one_divided_by_x_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.one_divided_by_x_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.one_divided_by_x_button,1,1)
         
 
         self.square_root_button = QPushButton("SqrtX")
+        self.square_root_button.setProperty("class", "operation")
         self.square_root_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.square_root_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.square_root_button,1,2)
         
 
         self.plus_button = QPushButton("+")
+        self.plus_button.setProperty("class", "operation")
         self.plus_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.plus_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.plus_button,1,3)
         
 
         self.one_button = QPushButton("1")
+        self.one_button.setProperty("class", "number")
         self.one_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.one_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.one_button,2,0)
         
 
         self.two_button = QPushButton("2")
+        self.two_button.setProperty("class", "number")
         self.two_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.two_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.two_button,2,1)
         
         
         self.three_button = QPushButton("3")
+        self.three_button.setProperty("class", "number")
         self.three_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.three_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.three_button,2,2)
         
 
         self.minus_button = QPushButton("-")
+        self.minus_button.setProperty("class", "operation")
         self.minus_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.minus_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.minus_button,2,3)
         
 
         self.four_button = QPushButton("4")
+        self.four_button.setProperty("class", "number")
         self.four_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.four_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.four_button,3,0)
         
 
         self.five_button = QPushButton("5")
+        self.five_button.setProperty("class", "number")
         self.five_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.five_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.five_button,3,1)
         
 
         self.six_button = QPushButton("6")
+        self.six_button.setProperty("class", "number")
         self.six_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.six_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.six_button,3,2)
         
 
         self.divide_button = QPushButton("/")
+        self.divide_button.setProperty("class", "operation")
         self.divide_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.divide_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.divide_button,3,3)
         
 
         self.seven_buton = QPushButton("7")
+        self.seven_buton.setProperty("class", "number")
         self.seven_buton.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.seven_buton.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.seven_buton,4,0)
         
 
         self.eight_button = QPushButton("8")
+        self.eight_button.setProperty("class", "number")
         self.eight_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.eight_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.eight_button,4,1)
         
 
         self.nine_button = QPushButton("9")
+        self.nine_button.setProperty("class", "number")
         self.nine_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.nine_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.nine_button,4,2)
         
 
         self.multiply_button = QPushButton("*")
+        self.multiply_button.setProperty("class", "operation")
         self.multiply_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.multiply_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.multiply_button,4,3)
         
 
         self.zero_button = QPushButton("0")
+        self.zero_button.setProperty("class", "number")
         self.zero_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.zero_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.zero_button,5,1)
         
 
         self.float_button = QPushButton(",")
+        self.float_button.setProperty("class", "operation")
         self.float_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.float_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.float_button,5,2)
         
 
         self.equals_button = QPushButton("=")
+        self.equals_button.setProperty("class", "orange")
         self.equals_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.equals_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.equals_button,5,3)
         
 
         self.restart_button = QPushButton("Res")
+        self.restart_button.setProperty("class", "orange")
         self.restart_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.restart_button.clicked.connect(self.restart_button_func)
         self.lower_groupbox_layout.addWidget(self.restart_button,5,0)

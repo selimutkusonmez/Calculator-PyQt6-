@@ -18,6 +18,8 @@ class LoginUI(QWidget):
 
     def init_ui(self):
 
+        self.setWindowTitle("Calculator App")
+
         self.setWindowIcon(QIcon(JPG_PATH))
         
         self.setFixedSize(300,400)
@@ -25,21 +27,26 @@ class LoginUI(QWidget):
         self.layout = QGridLayout()
         self.setLayout(self.layout)
 
-        self.login_ui_groupbox = QGroupBox("Login")
+        self.login_ui_groupbox = QGroupBox()
         self.login_ui_groupbox_layout = QGridLayout()
         self.login_ui_groupbox.setLayout(self.login_ui_groupbox_layout)
         self.layout.addWidget(self.login_ui_groupbox)
 
         self.username_label = QLabel("Username")
+        self.username_label.setProperty("class", "label")
         self.login_ui_groupbox_layout.addWidget(self.username_label,0,0)
 
         self.username_input = QLineEdit()
+        self.username_input.setProperty("class", "input")
         self.login_ui_groupbox_layout.addWidget(self.username_input,0,1)
 
         self.password_label = QLabel("Password")
+        self.password_label.setProperty("class", "label")
         self.login_ui_groupbox_layout.addWidget(self.password_label,1,0)
 
         self.password_input = QLineEdit()
+        self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
+        self.password_input.setProperty("class", "input")
         self.login_ui_groupbox_layout.addWidget(self.password_input,1,1)
 
         self.error_space = QLineEdit()
@@ -49,18 +56,22 @@ class LoginUI(QWidget):
         self.login_ui_groupbox_layout.addWidget(self.error_space,2,0,1,2)
 
         self.login_button = QPushButton("Login")
+        self.login_button.setProperty("class", "orange")
         self.login_button.clicked.connect(self.login_button_func)
         self.login_ui_groupbox_layout.addWidget(self.login_button,3,0,1,2)
 
         self.my_linkedin_button = QPushButton("My Linkedin")
+        self.my_linkedin_button.setProperty("class", "button")
         self.my_linkedin_button.clicked.connect(self.my_linkedin_button_func)
         self.login_ui_groupbox_layout.addWidget(self.my_linkedin_button,4,0,1,2)
 
         self.my_github_button = QPushButton("My Github")
+        self.my_github_button.setProperty("class", "button")
         self.my_github_button.clicked.connect(self.my_github_button_func)
         self.login_ui_groupbox_layout.addWidget(self.my_github_button,5,0,1,2)
 
         self.restart_app_button = QPushButton("Restart App")
+        self.restart_app_button.setProperty("class", "button")
         self.restart_app_button.clicked.connect(self.restart_app_button_func)
         self.login_ui_groupbox_layout.addWidget(self.restart_app_button,6,0,1,2)
 

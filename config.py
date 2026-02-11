@@ -6,3 +6,5 @@ DB_PATH = os.path.join(BASE_DIR, "calculator_modules","calculator_db", "user_dat
 STYLE_PATH = os.path.join(BASE_DIR,"calculator_modules","calculator_styles")
 
 JPG_PATH = os.path.join(BASE_DIR,"calculator_modules","calculator_extra","my_calculator.jpg")
+
+FONT_PATH = os.path.join(BASE_DIR,"calculator_modules","calculator_fonts","DSEG7Classic-Bold.ttf")
