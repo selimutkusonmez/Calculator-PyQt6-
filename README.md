@@ -1,4 +1,4 @@
-# My Retro Calcultor
+# My Retro Calculator
 
 This is my first GitHub project.
 
