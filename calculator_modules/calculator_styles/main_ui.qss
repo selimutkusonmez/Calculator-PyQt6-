@@ -10,8 +10,6 @@ QGroupBox#upper_groupbox QLineEdit{
     background-color: #9EA792;
 
     color: #1a1a1a;
-    font-size : 20px;
-    font-family: "DSEG7 Classic";
 
     border: 2px solid #6b7362;
     border-radius: 4px;
@@ -48,6 +46,7 @@ QPushButton[class="number"]:pressed{
 QPushButton[class="operation"]{
     background-color: #676666;
     color: white;
+    font-size : 20px;
 
 }
 
@@ -64,6 +63,7 @@ QPushButton[class="operation"]:pressed{
 QPushButton[class="orange"]{
     background-color: #FF9800;
     color: white; 
+    font-size : 20px;
 }
 
 QPushButton[class="orange"]:hover {

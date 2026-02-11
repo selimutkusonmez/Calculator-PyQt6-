@@ -2,8 +2,9 @@ import sys
 from PyQt6.QtCore import Qt,QRegularExpression,QSize,pyqtSignal
 from PyQt6.QtWidgets import (
      QApplication,QWidget,QMainWindow,QLineEdit,QPushButton,QTextEdit,QLabel,QGridLayout,QFrame,QTableWidget,QTableWidgetItem,QGroupBox,QComboBox,QMessageBox,QFileDialog,QListWidget,QTabWidget,QVBoxLayout,QSizePolicy)
-from PyQt6.QtGui import QIcon,QPixmap,QIntValidator,QDoubleValidator,QRegularExpressionValidator,QKeyEvent,QPainter,QKeyEvent
+from PyQt6.QtGui import QIcon,QPixmap,QIntValidator,QDoubleValidator,QRegularExpressionValidator,QKeyEvent,QPainter,QKeyEvent,QFont
 import subprocess
+import math
 
 from calculator_modules.calculator_functions.calculator_button_functions.key_press_func import key_press_event_function
 from calculator_modules.calculator_styles.style_reader import read_style
@@ -29,6 +30,7 @@ class MainUI(QWidget):
         self.layout.addWidget(self.upper_groupbox,0,0)
 
         self.upper_screen = QLineEdit()
+        self.upper_screen.setFont(QFont("DSEG7 Classic",3))
         self.upper_screen.setReadOnly(True)
         self.upper_screen.setAlignment(Qt.AlignmentFlag.AlignRight)
         self.upper_screen.setObjectName("upper_screen")
@@ -37,6 +39,7 @@ class MainUI(QWidget):
         self.upper_groupbox_layout.addWidget(self.upper_screen,0,0)
 
         self.lower_screen = QLineEdit()
+        self.lower_screen.setFont(QFont("DSEG7 Classic",3))
         self.lower_screen.setReadOnly(True)
         self.lower_screen.setAlignment(Qt.AlignmentFlag.AlignRight)
         self.lower_screen.setObjectName("lower_screen")
@@ -58,21 +61,21 @@ class MainUI(QWidget):
         self.lower_groupbox_layout.addWidget(self.c_button,0,0)
         
 
-        self.square_button = QPushButton("X2")
+        self.square_button = QPushButton("x²")
         self.square_button.setProperty("class", "operation")
         self.square_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.square_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.square_button,0,1)
         
 
-        self.button = QPushButton("")
+        self.button = QPushButton("CE")
         self.button.setProperty("class", "operation")
         self.button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.button,0,2)
         
 
-        self.erase_button = QPushButton("ers")
+        self.erase_button = QPushButton("DEL")
         self.erase_button.setProperty("class", "orange")
         self.erase_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.erase_button.clicked.connect(self.buttons_func)
@@ -86,14 +89,14 @@ class MainUI(QWidget):
         self.lower_groupbox_layout.addWidget(self.mod_button,1,0)
         
 
-        self.one_divided_by_x_button = QPushButton("1/X")
+        self.one_divided_by_x_button = QPushButton("x⁻¹")
         self.one_divided_by_x_button.setProperty("class", "operation")
         self.one_divided_by_x_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.one_divided_by_x_button.clicked.connect(self.buttons_func)
         self.lower_groupbox_layout.addWidget(self.one_divided_by_x_button,1,1)
         
 
-        self.square_root_button = QPushButton("SqrtX")
+        self.square_root_button = QPushButton("√x")
         self.square_root_button.setProperty("class", "operation")
         self.square_root_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.square_root_button.clicked.connect(self.buttons_func)
@@ -212,7 +215,7 @@ class MainUI(QWidget):
         self.lower_groupbox_layout.addWidget(self.equals_button,5,3)
         
 
-        self.restart_button = QPushButton("Res")
+        self.restart_button = QPushButton("RES")
         self.restart_button.setProperty("class", "orange")
         self.restart_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.restart_button.clicked.connect(self.restart_button_func)
@@ -225,15 +228,84 @@ class MainUI(QWidget):
         button = self.sender()
         lower_screen_current_text = self.lower_screen.text()
         upper_screen_current_text = self.upper_screen.text()
-        if button.text() in ["0","1","2","3","4","5","6","7","8","9"]:
+        latest_button = button.text()
+
+        #comma if state
+        if lower_screen_current_text[-1:] == "," or lower_screen_current_text == "" or "," in lower_screen_current_text:
+            if button.text() == ",":
+                return
+            
+        #backspace if state
+        if lower_screen_current_text == "" and button.text() == "DEL":
+            return
+        
+        if button.text() == "DEL":
+            self.lower_screen.setText(lower_screen_current_text[:-1])
+
+        if button.text() == "C":
+            self.lower_screen.setText("")
+        
+        if button.text() == "CE":
+            self.lower_screen.setText("")
+            self.upper_screen.setText("")
+
+
+        #numbers if state
+        if button.text() in ["0","1","2","3","4","5","6","7","8","9",","]:
             self.lower_screen.setText(lower_screen_current_text + button.text())
 
-        else :
-            if upper_screen_current_text == "":
-                self.upper_screen.setText(lower_screen_current_text + " " + button.text())
+        #operations if state
+        elif button.text() in ["*","/","+","-","%"] and upper_screen_current_text == "" and lower_screen_current_text != "":
+            self.upper_screen.setText(lower_screen_current_text + button.text())
+            self.lower_screen.setText("")
+
+        elif button.text() in ["x²","√x","x⁻¹"] and lower_screen_current_text != "":
+
+            if button.text() == "x²":
+                self.lower_screen.setText(str(float(lower_screen_current_text) ** 2))
+            elif button.text() == "√x":
+                self.lower_screen.setText(str(math.sqrt(float(lower_screen_current_text))))
+            elif button.text() == "x⁻¹":
+                self.lower_screen.setText(str(1 / float(lower_screen_current_text)))
+
+        elif upper_screen_current_text != "" and button.text() in ["*","/","+","-","%"] and lower_screen_current_text != "":
+            if  button.text() == "+":
+                self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) + float(lower_screen_current_text)) + "+")
+                self.lower_screen.setText("")
+            elif  button.text() == "-":
+                self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) - float(lower_screen_current_text)) + "-")
+                self.lower_screen.setText("")
+            elif  button.text() == "*":
+                self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) * float(lower_screen_current_text)) + "*")
+                self.lower_screen.setText("")
+            elif  button.text() == "/":
+                self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) / float(lower_screen_current_text)) + "/")
+                self.lower_screen.setText("")
+            elif button.text() == "%":
+                self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) % float(lower_screen_current_text)) + "/")
+                self.lower_screen.setText("")
+        elif lower_screen_current_text == "" and button.text() in ["*","/","+","-","%"] and upper_screen_current_text != "":
+             self.upper_screen.setText(upper_screen_current_text[:-1] + button.text())
+            
+        elif lower_screen_current_text != "" and upper_screen_current_text != "" and button.text() == "=":
+            operation = upper_screen_current_text[-1:]
+            if operation == "+":
+                self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) + float(lower_screen_current_text)) + "+")
+                self.lower_screen.setText("")
+            elif operation == "-":
+                self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) - float(lower_screen_current_text)) + "-")
+                self.lower_screen.setText("")
+            elif operation == "*":
+                self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) * float(lower_screen_current_text)) + "*")
+                self.lower_screen.setText("")
+            elif operation == "/":
+                self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) / float(lower_screen_current_text)) + "/")
                 self.lower_screen.setText("")
 
-
+            elif operation == "%":
+                self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) % float(lower_screen_current_text)) + "/")
+                self.lower_screen.setText("")
+                
     def keyPressEvent(self, event : QKeyEvent):
         try:
             key = event.key()
@@ -242,6 +314,21 @@ class MainUI(QWidget):
             click.animateClick()
             super().keyPressEvent(event)
         except : return
+
+    def resizeEvent(self, event):
+
+        new_height = event.size().height()
+
+        new_font_size = int(new_height * 0.05)
+        if new_font_size < 3:
+            new_font_size = 3
+        
+        current_font = self.upper_screen.font()
+        current_font.setPointSize(new_font_size)
+        self.upper_screen.setFont(current_font)
+        self.lower_screen.setFont(current_font)
+
+        super().resizeEvent(event)
 
     def restart_button_func(self):
         QApplication.quit()
