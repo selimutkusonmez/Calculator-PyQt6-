@@ -29,7 +29,6 @@ class AppManager:
             self.main_ui.show()
 
         else:
-            print(login_code)
             return
     
 if __name__ == "__main__":

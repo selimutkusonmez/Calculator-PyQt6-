@@ -201,7 +201,7 @@ class MainUI(QWidget):
         self.lower_groupbox_layout.addWidget(self.zero_button,5,1)
         
 
-        self.float_button = QPushButton(",")
+        self.float_button = QPushButton(".")
         self.float_button.setProperty("class", "operation")
         self.float_button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.float_button.clicked.connect(self.buttons_func)
@@ -231,8 +231,8 @@ class MainUI(QWidget):
         latest_button = button.text()
 
         #comma if state
-        if lower_screen_current_text[-1:] == "," or lower_screen_current_text == "" or "," in lower_screen_current_text:
-            if button.text() == ",":
+        if lower_screen_current_text[-1:] == "." or lower_screen_current_text == "" or "." in lower_screen_current_text:
+            if button.text() == ".":
                 return
             
         #backspace if state
@@ -251,7 +251,7 @@ class MainUI(QWidget):
 
 
         #numbers if state
-        if button.text() in ["0","1","2","3","4","5","6","7","8","9",","]:
+        if button.text() in ["0","1","2","3","4","5","6","7","8","9","."]:
             self.lower_screen.setText(lower_screen_current_text + button.text())
 
         #operations if state
@@ -266,7 +266,10 @@ class MainUI(QWidget):
             elif button.text() == "√x":
                 self.lower_screen.setText(str(math.sqrt(float(lower_screen_current_text))))
             elif button.text() == "x⁻¹":
-                self.lower_screen.setText(str(1 / float(lower_screen_current_text)))
+                try:
+                    self.lower_screen.setText(str(1 / float(lower_screen_current_text)))
+                except ZeroDivisionError:
+                    self.lower_screen.setText(lower_screen_current_text)
 
         elif upper_screen_current_text != "" and button.text() in ["*","/","+","-","%"] and lower_screen_current_text != "":
             if  button.text() == "+":
@@ -279,8 +282,12 @@ class MainUI(QWidget):
                 self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) * float(lower_screen_current_text)) + "*")
                 self.lower_screen.setText("")
             elif  button.text() == "/":
-                self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) / float(lower_screen_current_text)) + "/")
-                self.lower_screen.setText("")
+                try:
+                    self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) / float(lower_screen_current_text)) + "/")
+                    self.lower_screen.setText("")
+                except ZeroDivisionError: 
+                    self.upper_screen.setText(upper_screen_current_text)
+                    self.lower_screen.setText("")
             elif button.text() == "%":
                 self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) % float(lower_screen_current_text)) + "/")
                 self.lower_screen.setText("")
@@ -299,8 +306,12 @@ class MainUI(QWidget):
                 self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) * float(lower_screen_current_text)) + "*")
                 self.lower_screen.setText("")
             elif operation == "/":
-                self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) / float(lower_screen_current_text)) + "/")
-                self.lower_screen.setText("")
+                try:
+                    self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) / float(lower_screen_current_text)) + "/")
+                    self.lower_screen.setText("")
+                except ZeroDivisionError:
+                    self.upper_screen.setText(upper_screen_current_text)
+                    self.lower_screen.setText("")
 
             elif operation == "%":
                 self.upper_screen.setText(str(float(upper_screen_current_text[:-1]) % float(lower_screen_current_text)) + "/")
