@@ -52,7 +52,7 @@ class LoginUI(QWidget):
         self.error_space = QLineEdit()
         self.error_space.setObjectName("error_space")
         self.error_space.setReadOnly(True)
-        self.error_space.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.error_space.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.login_ui_groupbox_layout.addWidget(self.error_space,2,0,1,2)
 
         self.login_button = QPushButton("Login")

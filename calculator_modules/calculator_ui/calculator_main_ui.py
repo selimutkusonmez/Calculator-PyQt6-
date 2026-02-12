@@ -11,6 +11,7 @@ from calculator_modules.calculator_styles.style_reader import read_style
 from config import JPG_PATH
 
 class MainUI(QWidget):
+
     def __init__(self):
         super().__init__()
         self.init_ui()
