@@ -84,6 +84,12 @@ class LoginUI(QWidget):
             self.error_space.setText(login_status[1])
             self.username_input.setText("")
             self.password_input.setText("")
+
+    def keyPressEvent(self, event):
+        key = event.key()
+        if key == Qt.Key.Key_Return or key == Qt.Key.Key_Enter:
+            self.login_button.animateClick()
+        super().keyPressEvent(event)
         
 
     def restart_app_button_func(self):
